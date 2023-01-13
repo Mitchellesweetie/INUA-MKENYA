@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/user1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="User" />
+
+    <EditText
+        android:id="@+id/password1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@+id/user1"
+        android:layout_marginTop="50dp"
+        />
+    <Button
+        android:id="@+id/btnsignin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:layout_below="@+id/password1"
+        android:layout_marginTop="50dp"
+        />
+    <Button
+        android:id="@+id/btnsignup1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't have an accout?Register"
+        android:layout_below="@+id/btnsignin1"
+        android:layout_marginTop="50dp"
+        />
+</RelativeLayout>
