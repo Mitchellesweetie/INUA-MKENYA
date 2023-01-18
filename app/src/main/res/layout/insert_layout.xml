@@ -1,123 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-                
-    <EditText
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Name"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/age"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Age"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/school"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:hint="School"
-        android:textSize="20dp" />
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Address"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Email"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/phone"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Phone Number"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/feeamount"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:hint="Fee Approximation"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="20dp"
-        android:textColor="@color/black"
-        android:text="FeeStructure"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/feestruture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:hint="Upload Fee Structure"
-        android:textSize="20dp" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:id="@+id/letter"
-        android:textColor="@color/black"
-        android:text="Admissision letter"
-        android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/admission_letter"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_alignRight="@+id/letter"
+            android:gravity="center"
+            android:hint="Name"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="Age"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:hint="School"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:hint="Address"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="Phone Number"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/feeamount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:hint="Fee Approximation"
+            android:textSize="20dp" />
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:paddingTop="20dp"-->
+<!--            android:text="FeeStructure"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20dp" />-->
+
+        <Button
+            android:id="@+id/feestruture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:hint="Upload Fee Structure"
             android:textSize="20dp" />
-    </RelativeLayout>
 
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
+<!--            <TextView-->
+<!--                android:id="@+id/letter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingTop="10dp"-->
+<!--                android:text="Admissision letter"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20dp" />-->
 
-</LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/admission_letter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignRight="@+id/letter"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:gravity="center"-->
+<!--                android:hint="Upload Fee Structure"-->
+<!--                android:textSize="20dp" />-->
+<!--        </RelativeLayout>-->
+    </LinearLayout>
 </ScrollView>

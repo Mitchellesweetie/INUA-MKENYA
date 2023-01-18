@@ -19,11 +19,15 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.execSQL("create table user" +
                 "(email TEXT primary key,password TEXT)");
 
+        myDB.execSQL("create table UserdetailsTable" +
+                "(name TEXT, age TEXT, school TEXT, address TEXT, email TEXT, phone TEXT, fee TEXT)");
+
     }
     //droping any existence of login page
     @Override
     public void onUpgrade(SQLiteDatabase myDB, int i, int i1) {
         myDB.execSQL("drop table if exists user");
+        myDB.execSQL("drop table if exists UserdetailsTable");
         //creating tables again
         onCreate(myDB);
 
@@ -39,6 +43,21 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         else
             return  true;
+    }
+
+    public Boolean insertFeeData(String username, String age, String school, String address, String email, String phone, String fee) {
+        SQLiteDatabase myDB=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("age", age);
+        contentValues.put("school", school);
+        contentValues.put("address", address);
+        contentValues.put("email", email);
+        contentValues.put("phone", phone);
+        contentValues.put("fee", fee);
+
+        long result=myDB.insert("UserdetailsTable",null,contentValues);
+        return result != -1;
     }
     //checking the existence of password and user
     public Boolean checkusername(String user){

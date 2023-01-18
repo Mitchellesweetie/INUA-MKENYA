@@ -2,9 +2,9 @@ package com.example.angel;
 
 public class StudentInfo {
     int id;
-    String name,school,age,address,email,phone;
+    String name,school,age,address,email,phone,fee;
 
-    public StudentInfo(int id, String name, String school, String age, String address, String email, String phone) {
+    public StudentInfo(int id, String name, String school, String age, String address, String email, String phone,String fee) {
         this.id = id;
         this.name = name;
         this.school = school;
@@ -12,6 +12,13 @@ public class StudentInfo {
         this.address = address;
         this.email = email;
         this.phone = phone;
+        this.fee=fee;
+    }
+
+    public int getId() {return id;    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,11 +69,11 @@ public class StudentInfo {
         this.phone = phone;
     }
 
-    public int getId() {
-        return id;
+    public String getFee() {
+        return fee;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFee(String fee) {
+        this.fee = fee;
     }
 }

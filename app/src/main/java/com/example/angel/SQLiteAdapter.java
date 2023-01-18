@@ -18,12 +18,13 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     private static final String COL_ADDRESS="Address";
     private static final String COL_EMAIL="Email";
     private static final String COL_PHONE="Phonenumber";
-    private static final String COL_ORPHAN ="Orphan";
-    private static final String COL_parentsjob="parentsjob";
-    private static final String COL_employed="Employed";
-    private static final String COL_fee="feestructure";
-    private static final String COL_feedoc="feedoc";
-    private static final String COL_adddmission_letter="letter";
+    private static final String COL_FEE="fee";
+   // private static final String COL_ORPHAN ="Orphan";
+    //private static final String COL_parentsjob="parentsjob";
+   // private static final String COL_employed="Employed";
+
+    //private static final String COL_feedoc="feedoc";
+   // private static final String COL_adddmission_letter="letter";
 
     public SQLiteAdapter( Context context) {
         super(context,DB_NAME , null, 1);
@@ -33,8 +34,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase Db) {
         Db.execSQL("create table UserdetailsTable"+"(id integer primary key AUTOINCREMENT,Name TEXT ,School TEXT,Age TEXT," +
-                "Address TEXT,email text,phonenumber TEXT,feesrtruture text)");
-
+                "Address TEXT,email text,phonenumber TEXT,fee text)");
 
     }
 
@@ -43,7 +43,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         Db.execSQL("drop table if exists "+TABLE_NAME);
 
     }
-    public  Boolean insertuserdata(String name,String school,String age,String Address,String email, String phone){
+    public  Boolean insertuserdata(String name,String school,String age,String Address,String email, String phone,String fee){
         SQLiteDatabase Db=this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put(COL_FNAME,name);
@@ -52,11 +52,12 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         contentValues.put(COL_ADDRESS,Address);
         contentValues.put(COL_EMAIL,email);
         contentValues.put(COL_PHONE,phone);
+        contentValues.put(COL_FEE,fee);
         long result=Db.insert(TABLE_NAME,null,contentValues);
         if (result==-1)
-        {return false;}
+            return false;
         else
-        { return  true;}
+            return  true;
     }
     public ArrayList<StudentInfo> getStudentInfo(){
         SQLiteDatabase Db=this.getReadableDatabase();
@@ -71,12 +72,28 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
             String address=cursor.getString(4);
             String email=cursor.getString(5);
             String phone=cursor.getString(6);
-            StudentInfo studentInfo=new StudentInfo(id,name,age,school,address,email,phone);
+            String fee=cursor.getString(7);
+            StudentInfo studentInfo=new StudentInfo(id,name,age,school,address,email,phone,fee);
             arrayList.add(studentInfo);
         }
         return arrayList;
+    }
 
+    public ArrayList<StudentNotification> getStudentNotification(){
+        SQLiteDatabase Db=this.getReadableDatabase();
+        ArrayList<StudentNotification> arrayList=new ArrayList<>();
+        Cursor cursor=Db.rawQuery("Select * from UserdetailsTable",null);
 
+        while (cursor.moveToNext()){
+            int id=cursor.getInt(0);
+            String name=cursor.getString(1);
+            String school=cursor.getString(3);
+            String email=cursor.getString(5);
+            String phone=cursor.getString(6);
+            StudentNotification studentNotification=new StudentNotification(id,name,school,email,phone);
+            arrayList.add(studentNotification);
+        }
+        return arrayList;
     }
 
 
@@ -87,7 +104,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     }
 
 
-    public  Boolean updateuserdata(String id,String name,String age,String school,String Address,String email,String phone) {
+    public  Boolean updateuserdata(String id,String name,String age,String school,String Address,String email,String phone,String fee) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_FNAME,name);
@@ -96,12 +113,28 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         contentValues.put(COL_ADDRESS,Address);
         contentValues.put(COL_EMAIL,email);
         contentValues.put(COL_PHONE,phone);
+        contentValues.put(COL_FEE,fee);
 
         Db.update(TABLE_NAME,contentValues,"id=?",new String[]{id});
 
         return true;
 
     }
+
+    public  Boolean updateUserData(String name,String Address,String email, String phone) {
+        SQLiteDatabase Db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_FNAME,name);
+        contentValues.put(COL_ADDRESS,Address);
+        contentValues.put(COL_EMAIL,email);
+        contentValues.put(COL_PHONE,phone);
+
+        Db.update(TABLE_NAME,contentValues,"name=?",new String[]{name});
+
+        return true;
+
+    }
+
 
 
 

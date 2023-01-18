@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,6 +18,11 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class Profile extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    SharedPreferences sharedPreferences;
+    String username;
+    String email;
+    TextView usernameTextView;
+    TextView emailTextView;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -30,6 +36,15 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.profile_option);
         BadgeDrawable badgeDrawable=bottomNavigationView.getOrCreateBadge(R.id.notification_option);
         badgeDrawable.setVisible(true);
+
+        usernameTextView = findViewById(R.id.username_text_view);
+        emailTextView = findViewById(R.id.email_text_view);
+        sharedPreferences = getSharedPreferences("com.example.angel", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username", "username");
+        email = sharedPreferences.getString("email", "email");
+
+        usernameTextView.setText(username);
+        emailTextView.setText(email);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){

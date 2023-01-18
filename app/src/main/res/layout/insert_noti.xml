@@ -11,7 +11,7 @@
         />
     <TextView
         android:id="@+id/namev"
-        android:layout_toRightOf="@+id/tvid1"
+        android:layout_toRightOf="@id/tvid1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -19,39 +19,39 @@
         android:text="Name"
 
         />
-    <TextView
-        android:id="@+id/agev"
-        android:text="Age"
-        android:layout_toRightOf="@+id/namev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/agev"-->
+<!--        android:text="Age"-->
+<!--        android:layout_toRightOf="@+id/namev"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"-->
+<!--        />-->
     <TextView
         android:id="@+id/school"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="School"
         android:maxLines="2"
-        android:layout_below="@+id/namev"
+        android:layout_below="@id/namev"
         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-    <TextView
-        android:id="@+id/addressv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/school"
-        android:text="Address"
-        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/addressv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/school"-->
+<!--        android:text="Address"-->
+<!--        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"-->
+<!--        />-->
 
     <TextView
         android:id="@+id/email"
         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/addressv"
-        android:layout_below="@+id/school"
+        android:layout_below="@id/school"
         android:text="Email" />
+
     <TextView
         android:id="@+id/phone"
         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"

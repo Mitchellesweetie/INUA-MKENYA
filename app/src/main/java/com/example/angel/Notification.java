@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -67,5 +68,9 @@ public class Notification extends AppCompatActivity {
                 return false;
             }
         });
+
+        arrayList = mydb.getStudentNotification();
+        adapter = new StudentNotiAdapter(this, arrayList);
+        listView.setAdapter(adapter);
     }
 }

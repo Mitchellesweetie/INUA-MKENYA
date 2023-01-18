@@ -44,6 +44,7 @@ public class StudentInfoAdapter extends BaseAdapter {
         TextView tvaress=convertView.findViewById(R.id.addressv);
         TextView email=convertView.findViewById(R.id.email);
         TextView phone=convertView.findViewById(R.id.phone);
+        TextView fee=convertView.findViewById(R.id.feeamount1);
 
         StudentInfo studentInfo=arrayList.get(position);
         int id=studentInfo.getId();
@@ -53,6 +54,7 @@ public class StudentInfoAdapter extends BaseAdapter {
         String arress=studentInfo.getAddress();
         String emailv=studentInfo.getEmail();
         String phonev=studentInfo.getPhone();
+        String feev=studentInfo.getFee();
 
         tvid.setText(String.valueOf(id));
         tvname.setText(name);
@@ -61,6 +63,7 @@ public class StudentInfoAdapter extends BaseAdapter {
         tvaress.setText(arress);
         email.setText(emailv);
         phone.setText(phonev);
+        fee.setText(feev);
 
 
 

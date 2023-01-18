@@ -2,16 +2,24 @@ package com.example.angel;
 
 public class StudentNotification {
     int id;
-    String name,school,age,address,email,phone;
+    String name,school,email,phone;
 
-    public StudentNotification(int id, String name, String school, String age, String address, String email, String phone) {
+    public StudentNotification(int id, String name, String school, String email, String phone) {
         this.id = id;
         this.name = name;
+       // this.age = age;
         this.school = school;
-        this.age = age;
-        this.address = address;
+       // this.address = address;
         this.email = email;
         this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,22 +38,6 @@ public class StudentNotification {
         this.school = school;
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -60,13 +52,5 @@ public class StudentNotification {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
