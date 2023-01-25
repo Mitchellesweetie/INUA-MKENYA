@@ -18,6 +18,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     private static final String COL_ADDRESS="Address";
     private static final String COL_EMAIL="Email";
     private static final String COL_PHONE="Phonenumber";
+    private static final String COL_WORK = "Work";
     private static final String COL_FEE="fee";
    // private static final String COL_ORPHAN ="Orphan";
     //private static final String COL_parentsjob="parentsjob";
@@ -36,12 +37,15 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         Db.execSQL("create table UserdetailsTable"+"(id integer primary key AUTOINCREMENT,Name TEXT ,School TEXT,Age TEXT," +
                 "Address TEXT,email text,phonenumber TEXT,fee text)");
 
+        Db.execSQL("create table UserDetails"+"(id integer primary key AUTOINCREMENT,Name TEXT ,School TEXT,Age TEXT," +
+                "Address TEXT,email text,phonenumber TEXT,fee text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase  Db, int i, int i1) {
         Db.execSQL("drop table if exists "+TABLE_NAME);
-
+        Db.execSQL("drop table if exists UserDetails" );
+        onCreate(Db);
     }
     public  Boolean insertuserdata(String name,String school,String age,String Address,String email, String phone,String fee){
         SQLiteDatabase Db=this.getWritableDatabase();
@@ -53,7 +57,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         contentValues.put(COL_EMAIL,email);
         contentValues.put(COL_PHONE,phone);
         contentValues.put(COL_FEE,fee);
-        long result=Db.insert(TABLE_NAME,null,contentValues);
+        long result=Db.insert("UserDetails",null,contentValues);
         if (result==-1)
             return false;
         else
@@ -62,7 +66,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     public ArrayList<StudentInfo> getStudentInfo(){
         SQLiteDatabase Db=this.getReadableDatabase();
         ArrayList<StudentInfo> arrayList=new ArrayList<>();
-        Cursor cursor=Db.rawQuery("Select * from UserdetailsTable",null);
+        Cursor cursor=Db.rawQuery("Select * from UserDetails",null);
 
         while (cursor.moveToNext()){
             int id=cursor.getInt(0);
@@ -82,7 +86,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
     public ArrayList<StudentNotification> getStudentNotification(){
         SQLiteDatabase Db=this.getReadableDatabase();
         ArrayList<StudentNotification> arrayList=new ArrayList<>();
-        Cursor cursor=Db.rawQuery("Select * from UserdetailsTable",null);
+        Cursor cursor=Db.rawQuery("Select * from UserDetails",null);
 
         while (cursor.moveToNext()){
             int id=cursor.getInt(0);
@@ -128,6 +132,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         contentValues.put(COL_ADDRESS,Address);
         contentValues.put(COL_EMAIL,email);
         contentValues.put(COL_PHONE,phone);
+//        contentValues.put(COL_WORK, work);
 
         Db.update(TABLE_NAME,contentValues,"name=?",new String[]{name});
 

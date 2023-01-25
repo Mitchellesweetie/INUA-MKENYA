@@ -22,6 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.execSQL("create table UserdetailsTable" +
                 "(name TEXT, age TEXT, school TEXT, address TEXT, email TEXT, phone TEXT, fee TEXT)");
 
+//        myDB.execSQL("create table UserDetails" + "(id integer primary key AUTOINCREMENT, Name TEXT, " +
+//                "age TEXT, school TEXT, address TEXT,email TEXT, fee TEXT )");
+
     }
     //droping any existence of login page
     @Override

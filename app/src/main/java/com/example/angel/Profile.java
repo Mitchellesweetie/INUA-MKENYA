@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -23,6 +25,7 @@ public class Profile extends AppCompatActivity {
     String email;
     TextView usernameTextView;
     TextView emailTextView;
+    Button logoutButton;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -30,6 +33,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom);
+        logoutButton = findViewById(R.id.logout_button);
         ActionBar actionBar=getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
@@ -42,6 +46,15 @@ public class Profile extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("com.example.angel", Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username", "username");
         email = sharedPreferences.getString("email", "email");
+
+        logoutButton.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+            Intent intent=new Intent(getApplicationContext(),Login.class);
+            startActivity(intent);
+        });
 
         usernameTextView.setText(username);
         emailTextView.setText(email);

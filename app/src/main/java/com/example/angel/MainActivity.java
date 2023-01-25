@@ -27,6 +27,7 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "com.example.angel";
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     StudentInfoAdapter adapter;
     String usernameText;
     String emailText;
+    String addressText;
+    String phoneText;
     SharedPreferences sharedPreferences;
     Button uploadButton;
 
@@ -54,27 +57,44 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = view.findViewById(R.id.emailp);
         final EditText phone = view.findViewById(R.id.phonep);
 
+        sharedPreferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        usernameText = sharedPreferences.getString("username", "");
+        emailText = sharedPreferences.getString("email", "");
+        addressText = sharedPreferences.getString("address", "");
+        phoneText = sharedPreferences.getString("phone", "");
+
         name.setText(usernameText);
         email.setText(emailText);
+        address.setText(addressText);
+        phone.setText(phoneText);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setView(view)
-                .setTitle("Update Details")
-                .setMessage("Update User Details")
-                .setIcon(R.drawable.ic_baseline_person_add_24)
-                .setPositiveButton("Update", (dialogInterface, i) -> {
-                    boolean res = mydb.updateUserData(name.getText().toString(), address.getText().toString(), email.getText().toString(), phone.getText().toString() );
-                    if (res) {
-                        showInfo();
-                        Toast.makeText(MainActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setCancelable(false);
-//                .setNegativeButton("Cancelled", (dialogInterface, which) -> dialogInterface.cancel());
+        if (Objects.equals(usernameText, "") || Objects.equals(emailText, "") || Objects.equals(addressText, "") || Objects.equals(phoneText, "")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setView(view)
+                    .setTitle("Update Details")
+                    .setMessage("Update User Details")
+                    .setIcon(R.drawable.ic_baseline_person_add_24)
+                    .setPositiveButton("Update", (dialogInterface, i) -> {
+                        boolean res = mydb.updateUserData(name.getText().toString(), address.getText().toString(), email.getText().toString(), phone.getText().toString());
+                        if (res) {
+                            showInfo();
+                            editor.putString("username", String.valueOf(name.getText()));
+                            editor.putString("email", String.valueOf(email.getText()));
+                            editor.putString("address", String.valueOf(address.getText()));
+                            editor.putString("phone", String.valueOf(phone.getText()));
+                            editor.apply();
+                            Toast.makeText(MainActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setCancelable(false)
+                    .setNegativeButton("Cancel", (dialogInterface, which) -> dialogInterface.cancel());
 
-        builder.create().show();
+            builder.create().show();
+        }
 
 
         super.onCreate(savedInstanceState);
@@ -83,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
         mydb = new SQLiteAdapter(this);
         listView = (ListView) findViewById(R.id.listview1);
 
-        sharedPreferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        usernameText = sharedPreferences.getString("username", "username");
-        emailText = sharedPreferences.getString("email", "email");
+//        sharedPreferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//
+//        usernameText = sharedPreferences.getString("username", "username");
+//        emailText = sharedPreferences.getString("email", "email");
 
 
         bottomNavigationView.setSelectedItemId(R.id.home_option);
